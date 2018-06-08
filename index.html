@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="FCC: Documentation Project">
+    <meta name="keywords" content="Freecodecamp, responsive-web-design, project, documentation">
+    <meta name="author" content="Michael J Peppers <mcgdevfunk824@protonmail.com>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation</title>
+    <link href="styles/style.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Assistant" rel="stylesheet">
+    <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
+    <script src="https://rawgit.com/freeCodeCamp/testable-projects-fcc/master/build/bundle.js"></script>
+</head>
+
+<a id="github-link" href="https://github.com/McGdevfunk824" target="_blank"></a>
+
+<nav id="navbar">
+    <header>
+        <h1>ZeroNet</h1>
+    </header>
+    <ul>
+        <a class="nav-link" href="#What_is_ZeroNet" rel="internal">
+            <li>What is ZeroNet</li>
+        </a>
+        <a class="nav-link" href="#Installing_ZeroNet" rel="internal">
+            <li>Installing ZeroNet</li>
+        </a>
+        <a class="nav-link" href="#Site_Development" rel="internal">
+            <li>Site Development</li>
+        </a>
+        <a class="nav-link" href="#Help_ZeroNet_Development" rel="internal">
+            <li>Help ZeroNet Development</li>
+        </a>
+        <a class="nav-link" href="#Frequently_Asked_Questions" rel="internal">
+            <li>Frequently Asked Questions</li>
+        </a>
+    </ul>
+</nav>
+<hr />
+<main id="main-doc">
+    <section class="main-section" id="What_is_ZeroNet">
+        <header id="What_is_ZeroNet">
+            <h2>What is ZeroNet</h2>
+        </header>
+        <article>
+            <p>
+                ZeroNet uses Bitcoin cryptography and BitTorrent technology to build a <strong>decentralized censorship-resistant network</strong>.
+            </p>
+            <br>
+            <p>
+                Users can publish static or dynamic websites into ZeroNet and visitors can choose to also serve the website. Websites will remain online even if it is being served by only one peer.
+            </p>
+            <br>
+            <p>When a site is updated by its owner, all nodes serving that site (previous visitors) will receive only the incremental updates done to the site content.</p>
+            <br>
+            <p>ZeroNet comes with a built-in SQL database. This makes content-heavy site development easy. The DB is also synced with hosting nodes with incremental updates.</p>
+            <br>
+            <h2 id="why">Why?</h2>
+            <ul>
+                <li>We believe in open, free, and uncensored communication.</li>
+                <li>No censorship: After something is published there is no way to remove it.</li>
+                <li>No single point of failure: Content remains online even if only one peer is serving it.</li>
+                <li>Impossible to shut down: It's nowhere because it's everywhere. Content is served by any user who wishes to.</li>
+                <li>Fast: ZeroNet uses BitTorrent technology to deliver content faster than centralized servers.</li>
+                <li>Works offline: You can access the site even if your internet is unavailable.</li>
+                <li>Secure: Content ownership is secured using the same cryptography that secures your Bitcoin wallet.</li>
+            </ul>
+            <h2 id="features">Features</h2>
+            <ul>
+                <li>Easy, zero configuration setup.</li>
+                <li>Password-less BIP32 based authorization: Your account is protected by the same cryptography as your Bitcoin wallet.</li>
+                <li>Real-time updated sites.</li>
+                <li>Namecoin .bit domains support.</li>
+                <li>SQL Database support: Allows for easier site development and faster page load times.</li>
+                <li>Anonymity: Full Tor network support with .onion hidden services instead of ipv4 addresses.</li>
+                <li>TLS encrypted connections.</li>
+                <li>Automatic, uPnP port opening.</li>
+                <li>Plugin for multiuser (openproxy) support.</li>
+                <li>Works with any browser/OS.</li>
+            </ul>
+            <h2 id="how-does-it-work">How does it work?</h2>
+            <ul>
+                <li>After you install and run ZeroNet, you open a site by visiting:
+                    <code>http://127.0.0.1:43110/{zeronet_site_address}</code> for example:
+                    <code>http://127.0.0.1:43110/1HeLLo4uzjaLetFx6NH3PMwFP3qbRbTf3D</code>
+                </li>
+                <li>ZeroNet will then use the BitTorrent network to find peers that are seeding the site and will download the site content (HTML, CSS, JS...) from these peers</li>
+                <li>Each visited site becomes also served by you.</li>
+                <li>Every site contains a list of all files used in the site in a SHA512 hash and a signature generated using the site owner private key.</li>
+                <li>If the site owner modifies the site, then he/she signs a new list and publishes it to the peers. After the peers have verified the files list integrity (using the signature), they download the modified files and publish the new content
+                    to other peers.</li>
+            </ul>
+        </article>
+    </section>
+    <hr />
+    <section class="main-section" id="Installing_ZeroNet">
+        <header id="Installing_ZeroNet">
+            <h2>Installing ZeroNet</h2>
+        </header>
+        <article>
+            <ul>
+                <li><a href="https://github.com/HelloZeroNet/ZeroNet-win/archive/dist/ZeroNet-win.zip">Microsoft Windows</a></li>
+                <li><a href="https://github.com/HelloZeroNet/ZeroNet-mac/archive/dist/ZeroNet-mac.zip">Apple macOS</a></li>
+                <li><a href="https://github.com/HelloZeroNet/ZeroBundle/raw/master/dist/ZeroBundle-linux64.tar.gz">Linux 64bit</a></li>
+                <li><a href="https://github.com/HelloZeroNet/ZeroBundle/raw/master/dist/ZeroBundle-linux32.tar.gz">Linux 32bit</a></li>
+                <br>
+                <li>Unpack anywhere</li>
+                <li>Run <code>ZeroNet.exe</code> (win), <code>ZeroNet(.app)</code> (macOS), <code>ZeroNet.sh</code> (linux)</li>
+            </ul>
+            <h4 id="manual-install-for-debian-linux">Manual install for Debian Linux</h4>
+            <ul>
+                <li><code>sudo apt-get update</code></li>
+                <li><code>sudo apt-get install msgpack-python python-gevent</code></li>
+                <li><code>wget https://github.com/HelloZeroNet/ZeroNet/archive/master.tar.gz</code></li>
+                <li><code>tar xvpfz master.tar.gz</code></li>
+                <li><code>cd ZeroNet-master</code></li>
+                <li>Start with <code>python zeronet.py</code></li>
+                <li>Open http://127.0.0.1:43110/ in your browser</li>
+            </ul>
+            <h3 id="vagrant"><a href="https://www.vagrantup.com/">Vagrant</a></h3>
+            <ul>
+                <li><code>vagrant up</code></li>
+                <li>Access VM with <code>vagrant ssh</code></li>
+                <li><code>cd /vagrant</code></li>
+                <li>Run <code>python zeronet.py --ui_ip 0.0.0.0</code></li>
+                <li>Open http://127.0.0.1:43110/ in your browser</li>
+            </ul>
+            <h3 id="docker"><a href="https://www.docker.com/">Docker</a></h3>
+            <ul>
+                <li><code>docker run -d -v <local_data_folder>:/root/data -p 15441:15441 -p 127.0.0.1:43110:43110 nofish/zeronet</code></li>
+                <li>This Docker image includes the Tor proxy, which is disabled by default. Beware that some hosting providers may not allow you running Tor in their servers. If you want to enable it, set <code>ENABLE_TOR</code> environment variable to <code>true</code>                    (Default: <code>false</code></li>
+            </ul> E.g.:
+            <p><code>docker run -d -e "ENABLE_TOR=true" -v <local_data_folder>:/root/data -p 15441:15441 -p 127.0.0.1:43110:43110 nofish/zeronet</code> * Open http://127.0.0.1:43110/ in your browser</p>
+            <h3 id="virtualenv"><a href="https://virtualenv.readthedocs.org/en/latest/">Virtualenv</a></h3>
+            <ul>
+                <li><code>virtualenv env</code></li>
+                <li><code>source env/bin/activate</code></li>
+                <li><code>pip install msgpack-python gevent</code></li>
+                <li><code>python zeronet.py</code></li>
+                <li>Open http://127.0.0.1:43110/ in your browser</li>
+            </ul>
+        </article>
+    </section>
+    <hr />
+    <section class="main-section" id="Site_Development">
+        <header id="Site_Development">
+            <h2>Site Development</h2>
+        </header>
+        <article>
+            <h1 id="overview">Overview</h1>
+            <p>ZeroNet allows you to publish static and dynamic sites.</p>
+            <p>Although ZeroNet can't run scripting languages like PHP or Ruby, you can create dynamic sites using ZeroNet's API (called ZeroFrame), JavaScript (or CoffeeScript) and the built-in SQL database.</p>
+            <h2 id="zerochat-tutorial">ZeroChat tutorial</h2>
+            <p>In this tutorial we are going to build a P2P, decentralized, serverless chat site in less than 100 lines of code.</p>
+            <ul>
+                <li><a href="http://127.0.0.1:43110/Blog.ZeroNetwork.bit/?Post:99:ZeroChat+tutorial">Read on ZeroBlog</a></li>
+                <li><a href="https://decentralize.today/decentralized-p2p-chat-in-100-lines-of-code-d6e496034cd4">Read on Medium.com</a></li>
+            </ul>
+            <h2 id="zeronet-debug-mode">ZeroNet Debug mode</h2>
+            <p>ZeroNet comes with a <code>--debug</code> flag that will make site development easier.</p>
+            <p>To run ZeroNet in debug mode use:<br><code>python zeronet.py --debug</code></p>
+            <p>If you are using a compiled/bundle version of ZeroNet:<br><em> On Windows: <br><code>lib\ZeroNet.cmd --debug</code></em><br> On Linux:<br> <code>./ZeroNet.sh --debug</code><br> On Mac: <br><code>./ZeroNet.app/Contents/MacOS/ZeroNet --debug</code></p>
+            <h3 id="debug-mode-features">Debug mode features:</h3>
+            <ul>
+                <li>Automatic CoffeeScript -> JavaScript conversion (All examples used in this documentation and sample sites are written in <a href="http://coffeescript.org/">CoffeeScript</a>)</li>
+                <li>Debug messages will appear in the console</li>
+                <li>Auto reload of some source files (UiRequest, UiWebsocket, FileRequest) on modification to prevent restarting (Requires <a href="http://pyfilesystem.org/">PyFilesystem</a> on GNU/Linux)</li>
+                <li><code>http://127.0.0.1:43110/Debug</code> Traceback and interactive Python console at the last error position (using the wonderful Werkzeug debugger - Requires <a href="http://werkzeug.pocoo.org/">Werkzeug</a>)</li>
+                <li><code>http://127.0.0.1:43110/Console</code>Spawns an interactive Python console (Requires <a href="http://werkzeug.pocoo.org/">Werkzeug</a>)</li>
+            </ul>
+            <h3 id="extra-features">Extra features will only work for the sites that you own</h3>
+            <ul>
+                <li>Merged CSS files: All CSS files inside the site folder will be merged into one file called <code>all.css</code>. You can choose to include only this file to your site. If you want to keep the other CSS files to make the development easier,
+                    you can add them to the ignore key or your <code>content.json</code>. This way, they won't be published with your site. (eg: add to your <code>content.json</code><code>"ignore": "(js|css)/(?!all.(js|css))"</code> this will ignore all
+                    CSS and JS files except <code>all.js</code> and <code>all.css</code>)</li>
+                <li>Merged JS files: All JS files inside the site folder will be merged into one file called <code>all.js</code>. If a CoffeeScript compiler is present (bundled for Windows) it will convert <code>.coffee</code> to <code>.js</code>.</li>
+                <li>Order in which files are merged into all.css/all.js: Files inside the subdirectories of the css/js folder comes first; Files in the css/js folder will be merged according to file name ordering (01_a.css, 02_a.css, etc)</li>
+            </ul>
+        </article>
+    </section>
+    <hr />
+    <section class="main-section" id="Help_ZeroNet_Development">
+        <header id="Help_ZeroNet_Development">
+            <h2>Help ZeroNet Development</h2>
+        </header>
+        <article>
+            <h1 id="contributing-to-zeronet">Contributing to ZeroNet</h1>
+            <p>Thank you for using ZeroNet. ZeroNet is a collaborative effort of 67+ decentralization enthusiasts just like you. We appreciate all users that catch bugs, improve our documentation and have good ideas for designing new protocols. Here are
+                a few guidelines we ask you to follow to get started making your contribution.</p>
+            <h3 id="you-dont-have-to-contribute-source-code">You don't have to contribute source code</h3>
+            <p>In fact, a majority of contributors do not submit source code. Even if you like to write programs, other types of contribution are also welcomed.</p>
+            <h3 id="do-you-like-to-write">Do you like to write?</h3>
+            <ul>
+                <li>Write about ZeroNet.</li>
+                <li>Write tutorials to help people set things up.</li>
+                <li>Help translate ZeroNet.</li>
+                <li>Improve this documentation. This documentation is written by many community members all over the world.</li>
+            </ul>
+            <h3 id="do-you-like-helping-people">Do you like helping people?</h3>
+            <ul>
+                <li>Subscribe to our <a href="https://github.com/HelloZeroNet/ZeroNet/issues">issue tracker on GitHub</a> and help people solve problems. </li>
+                <li>Join us on <a href="https://gitter.im/HelloZeroNet/ZeroNet">Gitter</a> and IRC channel <a href="https://kiwiirc.com/client/irc.freenode.net/zeronet">#zeronet @ freenode</a> and help answer questions.</li>
+                <li>Set up a seed box and help make the network faster.</li>
+            </ul>
+            <h3 id="do-you-like-to-make-websites">Do you like to make websites?</h3>
+            <ul>
+                <li>Create new ZeroNet sites. Go ahead and make your own blog on ZeroNet. <a href="../../using_zeronet/create_new_site/">It is easy and costs little.</a></li>
+                <li>Content is king! as NoFish puts it. The network is worth nothing without content, so we need You to make it succeed.</li>
+            </ul>
+            <h3 id="do-you-like-to-do-research">Do you like to do research?</h3>
+            <ul>
+                <li>Help us investigate our <a href="https://github.com/HelloZeroNet/ZeroNet/labels/help%20wanted">hard issues</a>.</li>
+                <li>Join our discussion of desigining new features and protocols, such as <a href="https://github.com/HelloZeroNet/ZeroNet/issues/45">I2P support</a> and <a href="https://github.com/HelloZeroNet/ZeroNet/issues/57">DHT support</a>.</li>
+            </ul>
+            <h3 id="do-you-like-to-write-code">Do you like to write code?</h3>
+            <ul>
+                <li>If you know Python, you can pick a task from our <a href="https://github.com/HelloZeroNet/ZeroNet/issues">issue tracker on GitHub</a>.</li>
+                <li>You are also welcomed to develop your own ideas. Before you start, please <a href="https://github.com/HelloZeroNet/ZeroNet/issues/new">open a new discussion</a> to let the community know, so you can make sure we can share our ideas to
+                    make the best out of it.</li>
+                <li>Keep your coding style consistent. We ask you to follow our coding convention below.</li>
+            </ul>
+            <h2 id="coding-convention">Coding convention</h2>
+            <ul>
+                <li>Follow <a href="https://www.python.org/dev/peps/pep-0008/">PEP8</a></li>
+                <li>Simple is better than complex</li>
+                <li>Premature optimization is the root of all evil</li>
+            </ul>
+            <h3 id="naming">Naming</h3>
+            <ul>
+                <li>ClassNames: Capitalized, CamelCased</li>
+                <li>functionNames: starts with lowercase, camelCased</li>
+                <li>variable_names: lowercased, under_scored</li>
+            </ul>
+        </article>
+    </section>
+    <hr />
+    <section class="main-section" id="Frequently_Asked_Questions">
+        <header id="Frequently-asked-questions">
+            <h2>Frequently Asked Questions</h2>
+        </header>
+        <article>
+            <h4 id="do-i-need-to-have-a-port-opened">Do I need to have a port opened?</h4>
+            <p>This is <strong>optional</strong>, you can browse and use ZeroNet sites without an open port. If you want to create a new site it's highly recommended to have an open port.</p>
+            <p>At startup ZeroNet tries to open a port for you on your router using <a href="https://wikipedia.org/wiki/Universal_Plug_and_Play">UPnP</a>, if this fails you will have to do it manually.</p>
+            <h4 id="is-zeronet-anonymous">Is ZeroNet anonymous?</h4>
+            <p>It's no more anonymous than BitTorrent, but privacy (the possibility to find out who is the owner of the comment/site) will increase as the network and the sites gain more peers.</p>
+            <p>ZeroNet is made to work with anonymity networks: you can easily hide your IP using the Tor network.</p>
+            <hr />
+            <h4 id="how-to-use-zeronet-in-tor-browser">How to use ZeroNet in Tor browser?</h4>
+            <p>In Tor mode it's recommended to use ZeroNet in Tor Browser:</p>
+            <ul>
+                <li>Start the Tor Browser</li>
+                <li>Go to address <code>about:preferences#advanced</code></li>
+                <li>Click <code>Settings...</code></li>
+                <li>Enter <code>127.0.0.1</code> to field <strong>No proxy for</strong></li>
+                <li>Open http://127.0.0.1:43110 in the browser</li>
+            </ul>
+            <p>If you still see a blank page:
+                <ul>
+                    <li>Click on NoScript's button (first on the toolbar)</li>
+                    <li>Choose "Temporarily allow all on this page"</li>
+                    <li>Reload the page.</li>
+                </ul>
+            </p>
+            <hr />
+            <h4 id="how-to-use-zeronet-with-tor">How to use ZeroNet with Tor?</h4>
+            <p>If you want to hide your IP address install the latest version of ZeroNet then click Tor > Enable Tor for every connection on ZeroHello.</p>
+            <p>On Windows Tor is bundled with ZeroNet, ZeroNet will attempt to download and unpack Tor on its first run. But in any case if it fails you can install it manually following the instructions in <code>core\tools\tor\manual_install.txt</code>.</p>
+            <p>For other OS <a href="https://www.torproject.org/docs/installguide.html">follow Tor install instructions</a>, edit your torrc configuration file by removing <code>#</code> from line <code># ControlPort 9051</code> then restart your Tor service
+                and ZeroNet.</p>
+            <blockquote>
+                <p>
+                    <strong>Tip:</strong> You can verify your IP address using ZeroNet's <a href="http://127.0.0.1:43110/Stats">Stats</a> page.
+                </p>
+            </blockquote>
+            <hr />
+            <h4 id="can-i-use-the-same-username-on-multiple-machine">Can I use the same username on multiple machines?</h4>
+            <p>Yes, you just have to copy the <code>data/users.json</code> file to your new machine.</p>
+            <hr />
+            <h4 id="how-to-create-a-fancy-site-address">How to create a "fancy" site address?</h4>
+            <p>Use <a href="https://bitcointalk.org/index.php?topic=25804.0">vanitygen</a> to generate one. Once you get your keys, create<code>data/1YourPublicKey...tCkBzAXTKvJk4uj8</code> directory. Put some files there.</p>
+            <p>Then navigate to <a href="http://127.0.0.1:43110/1YourPublicKey...tCkBzAXTKvJk4uj8/">http://127.0.0.1:43110/1YourPublicKey...tCkBzAXTKvJk4uj8/</a>. Drag the <code>0</code> button to the left and use the sidebar to sign your site.</p>
+            <hr />
+        </article>
+    </section>
+</main>
+
+<script src="App.js"></script>
+
+</html>
